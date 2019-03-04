@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using Amazon.SQS.Model;
 using Amazon.SQS;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace send
 {
     class Program
     {
+
      	static void Main(string[] args)
         {
-            Console.WriteLine("Hello Developers!");
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        private static async Task MainAsync(string[] args)
+        {
             var sqsClient = new Amazon.SQS.AmazonSQSClient();
-            for (var idx = 0; idx <=100; idx++ )
+            for (var idx = 0; idx <=50000; idx++ )
             {
              	Console.WriteLine(String.Format("BATCH No.: {0}",idx));
                 var sendMessageBatchRequest = new SendMessageBatchRequest
@@ -20,11 +26,11 @@ namespace send
                     Entries = generateMessages(),
                     QueueUrl = "https://sqs.eu-west-1.amazonaws.com/655379451354/4developers_queue"
                 };
-                sqsClient.SendMessageBatchAsync(sendMessageBatchRequest).Wait();
+                var resonse = await sqsClient.SendMessageBatchAsync(sendMessageBatchRequest);
             }
-         }
+        }
 
-	private static List<SendMessageBatchRequestEntry> generateMessages()
+	    private static List<SendMessageBatchRequestEntry> generateMessages()
         {
             var messages = new List<SendMessageBatchRequestEntry>();
             for (var idx = 1; idx <= 10; idx++)
