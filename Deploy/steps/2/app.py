@@ -2,7 +2,13 @@ import json
 import os
 import boto3 
 
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+
+patch_all()
+
 DYNAMODB_TABLE = os.environ['table_name']
+
 
 def lambda_handler(event, context):
     print(json.dumps(event))
@@ -20,6 +26,8 @@ def lambda_handler(event, context):
             {"message": "Hello 4Developers"}
         ),
     }
+    
+@xray_recorder.capture('dynamodb')
 def save(event):
     request_id = event['requestContext']['requestId']
     body = event['body']
