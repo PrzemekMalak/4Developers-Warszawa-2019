@@ -2,11 +2,11 @@
 2. Install aws-sam-cli
 
 # build app
-sam init --runtime python3.6 
+sam init --runtime python3.7
 cd sam-app
 sam build --use-container
 
-sam build       
+sam build
 
 # test app
 sam local start-api

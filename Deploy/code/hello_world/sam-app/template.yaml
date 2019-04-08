@@ -6,18 +6,17 @@ Globals:
     Function:
         Timeout: 3
 
-
 Resources:
 
     HelloWorldFunction:
-        Type: AWS::Serverless::Function 
+        Type: AWS::Serverless::Function
         Properties:
             CodeUri: hello_world/
             Handler: app.lambda_handler
             Runtime: python3.7
             Events:
                 GetEvent:
-                    Type: Api 
+                    Type: Api
                     Properties:
                         Path: /
                         Method: get

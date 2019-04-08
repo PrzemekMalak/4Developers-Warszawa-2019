@@ -33,11 +33,9 @@ def save(event):
     body = event['body']
     payload = json.loads(body)
     name = payload['name']
-
     subsegment = xray_recorder.begin_subsegment('saving_user')
     subsegment.put_annotation('name', name)
     xray_recorder.end_subsegment()
-    
     client = boto3.client('dynamodb')
     response = client.put_item(
         TableName = DYNAMODB_TABLE,
