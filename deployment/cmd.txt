@@ -1,0 +1,32 @@
+1. Install Docker
+2. Install aws-sam-cli
+
+# build app
+sam init --runtime python3.7
+cd sam-app
+sam build --use-container
+
+sam build
+
+# test app
+sam local start-api
+
+# make s3 bucket
+aws s3 mb s3://przemek-4developers --profile przlab --region eu-central-1
+
+sam package \
+    --output-template-file packaged.yaml \
+    --s3-bucket przemek-4developers \
+    --profile przlab
+
+sam deploy \
+    --template-file /Users/przemek/Documents/4Developers/Deploy/code/hello_world/sam-app/packaged.yaml \
+    --stack-name Stack-4Developers \
+    --profile przlab \
+    --capabilities CAPABILITY_IAM \
+    --region eu-central-1
+
+aws cloudformation describe-stacks \
+    --stack-name Stack-4Developers \
+    --profile przlab --region eu-central-1 \
+    --query 'Stacks[0].Outputs[1].OutputValue'

@@ -1,0 +1,11 @@
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/bin/Debug/netcoreapp2.1/SendMessages.deps.json
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/bin/Debug/netcoreapp2.1/SendMessages.runtimeconfig.json
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/bin/Debug/netcoreapp2.1/SendMessages.runtimeconfig.dev.json
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/bin/Debug/netcoreapp2.1/SendMessages.dll
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/bin/Debug/netcoreapp2.1/SendMessages.pdb
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/obj/Debug/netcoreapp2.1/SendMessages.csprojAssemblyReference.cache
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/obj/Debug/netcoreapp2.1/SendMessages.csproj.CoreCompileInputs.cache
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/obj/Debug/netcoreapp2.1/SendMessages.AssemblyInfoInputs.cache
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/obj/Debug/netcoreapp2.1/SendMessages.AssemblyInfo.cs
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/obj/Debug/netcoreapp2.1/SendMessages.dll
+/Users/przemek/Documents/4Developers/Scaling/code/SendMessages/obj/Debug/netcoreapp2.1/SendMessages.pdb

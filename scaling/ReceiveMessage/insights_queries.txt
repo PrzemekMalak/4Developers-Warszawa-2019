@@ -1,0 +1,5 @@
+filter @message like /(?i)[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/
+| parse @message 'Time: * Id: *' as LambdaTime, LambdaId
+| stats count_distinct(LambdaId) by bin(30s) as StartTime
+| sort StartTime
+

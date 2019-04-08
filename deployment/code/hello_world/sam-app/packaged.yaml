@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 4Developers SAM
+Globals:
+  Function:
+    Timeout: 3
+Outputs:
+  APIEndpoint:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod
+Resources:
+  DynamoTable:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: name
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      - AttributeName: name
+        KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+    Type: AWS::DynamoDB::Table
+  HelloWorldFunction:
+    Properties:
+      CodeUri: s3://przemek-4developers/a770a3657e03479f319e2a7a55cdf244
+      Environment:
+        Variables:
+          table_name:
+            Ref: DynamoTable
+      Events:
+        GetEvent:
+          Properties:
+            Method: get
+            Path: /
+          Type: Api
+        PostEvent:
+          Properties:
+            Method: post
+            Path: /
+          Type: Api
+      Handler: app.lambda_handler
+      Layers:
+      - arn:aws:lambda:eu-central-1:655379451354:layer:xray:1
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: python3.7
+      Tracing: Active
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
